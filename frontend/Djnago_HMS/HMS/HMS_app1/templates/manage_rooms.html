@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Rooms</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+    /* background: linear-gradient(to right, #6a11cb, #2575fc); */
+    font-family: 'Poppins', sans-serif;
+    color: #0b0b0b;
+    background: url('/static/images/background_3.jpg') no-repeat center center/cover;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    /* backdrop-filter: blur(50px); */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.btn-primary {
+    background: #f576ab;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: #ff3d7f;
+    transform: scale(1.05);
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-dark {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.table tbody tr {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.badge {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+.btn-warning,
+.btn-danger {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-warning:hover {
+    background: #ffcc00;
+    transform: scale(1.05);
+}
+
+.btn-danger:hover {
+    background: #ff4444;
+    transform: scale(1.05);
+}
+
+/* Animation to fade in table rows */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table tbody tr {
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.table tbody tr:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.table tbody tr:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Manage Rooms</h1>
+        <a href="{% url 'a_dash'%}" class="btn btn-primary mb-3">Back to Dashboard</a>
+        <a href="{% url 'add_rooms'%}" class="btn btn-primary mb-3">Add New Room</a>
+
+
+        
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Hostel Name</th>
+                    <th>Hostel Rating</th>
+                    <th>City</th>
+                    <th>Occupied</th>  <!-- ✅ Added Occupied Column -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in Room_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ room.hostel_name }}</td>
+                    <td>{{ room.rating }} ⭐</td>
+                    <td>{{ room.city }}</td>
+                    <td>
+                        {% if room.occupied %}
+                            <span class="badge bg-danger">Occupied</span>  <!-- ✅ Show 'Occupied' if room is occupied -->
+                        {% else %}
+                            <span class="badge bg-success">Available</span>  <!-- ✅ Show 'Available' if room is not occupied -->
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_room' room_id=room.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a onclick="return confirm('Are you sure ?')" href="{% url 'delete_room' room_id=room.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+</html>

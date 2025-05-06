@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: fadeInBody 1s ease;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .payment-container {
+      background: #ffffff;
+      padding: 35px 40px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+    }
+
+    .section {
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeInSection 0.6s forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.3s; }
+    .section:nth-child(2) { animation-delay: 0.5s; }
+    .section:nth-child(3) { animation-delay: 0.7s; }
+
+    @keyframes fadeInSection {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      background: #f8f9fa;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      background: #fff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='%23666' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position-x: 98%;
+      background-position-y: 50%;
+    }
+
+    .fade {
+      animation: fadeInSection 0.6s forwards;
+    }
+
+    button.loading {
+  pointer-events: none;
+  color: transparent;
+  position: relative;
+}
+
+button.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="payment-container">
+  <h2>Secure Payment</h2>
+  <form id="payment-form" action="{%url 'payments'%}" method="POST">
+    {% csrf_token %}
+    <div class="section">
+      <label for="amount">Amount (INR)</label>
+      <input type="number" id="amount" name="amount" placeholder="e.g., 500" required>
+    </div>
+
+    <div class="section">
+      <label for="method">Payment Method</label>
+      <select id="method" name="payment_method" onchange="switchMethod()" required>
+        <option value="card">Card</option>
+        <option value="upi">UPI</option>
+        <option value="netbanking">Netbanking</option>
+      </select>
+    </div>
+
+    <div id="card-section" class="section fade">
+      <label>Card Number</label>
+      <input type="text" name="card_number" placeholder="1234 5678 9012 3456">
+
+      <label>Expiry</label>
+      <input type="text" name="expiry" placeholder="MM/YY">
+
+      <label>CVV</label>
+      <input type="password" name="cvv" placeholder="123">
+    </div>
+
+    <div id="upi-section" class="section fade" style="display: none;">
+      <label>UPI ID</label>
+      <input type="text" name="upi_id" placeholder="example@upi">
+    </div>
+
+    <div id="netbanking-section" class="section fade" style="display: none;">
+      <label>Select Bank</label>
+      <select name="bank">
+        <option value="">-- Select Bank --</option>
+        <option>SBI</option>
+        <option>HDFC</option>
+        <option>ICICI</option>
+        <option>Axis</option>
+      </select>
+    </div>
+
+    <button type="submit">Pay Now</button>
+  </form>
+</div>
+
+<script>
+  function switchMethod() {
+    const method = document.getElementById("method").value;
+
+    document.getElementById("card-section").style.display = method === "card" ? "block" : "none";
+    document.getElementById("upi-section").style.display = method === "upi" ? "block" : "none";
+    document.getElementById("netbanking-section").style.display = method === "netbanking" ? "block" : "none";
+  }
+  document.getElementById("payment-form").addEventListener("submit", function (e) {
+  const button = this.querySelector("button");
+  button.classList.add("loading");
+});
+const cvvInput = document.querySelector('input[name="cvv"]');
+cvvInput.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").substring(0, 3);
+});
+
+  function switchMethod() {
+    const method = document.getElementById("method").value;
+    document.getElementById("card-section").style.display = method === "card" ? "block" : "none";
+    document.getElementById("upi-section").style.display = method === "upi" ? "block" : "none";
+    document.getElementById("netbanking-section").style.display = method === "netbanking" ? "block" : "none";
+  };
+
+  
+  const cardInput = document.querySelector('input[name="card_number"]');
+  cardInput.addEventListener("input", function (e) {
+    let value = this.value.replace(/\D/g, "").substring(0, 16); // Only digits, max 16
+    let formatted = value.match(/.{1,4}/g); // Group in 4s
+    this.value = formatted ? formatted.join(" ") : "";
+  });
+
+  // Format expiry
+  const expiryInput = document.querySelector('input[name="expiry"]');
+  expiryInput.addEventListener("input", function (e) {
+    let value = this.value.replace(/\D/g, "").substring(0, 4); // MMYY format
+    if (value.length >= 3) {
+      this.value = value.substring(0, 2) + "/" + value.substring(2);
+    } else {
+      this.value = value;
+    }
+  });
+
+ 
+  document.getElementById("payment-form").addEventListener("submit", function (e) {
+    const button = this.querySelector("button");
+    button.classList.add("loading");
+  });
+</script>
+
+</body>
+</html>

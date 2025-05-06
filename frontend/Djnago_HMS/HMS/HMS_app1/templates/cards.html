@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Listing</title>
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: radial-gradient(circle, #ffffff, #dfe9f3);
+        margin: 0;
+        color: #444;
+    }
+    a{
+        text-decoration: none;
+    }
+    .heading {
+        font-size: 32px;
+        margin-bottom: 10px;
+        text-align: center;
+        margin-top: 20px;
+
+    }
+    .hostel-list {
+        max-width: 1000px;
+        margin: auto;
+    }
+    
+    .hostel-card {
+        display: flex;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+        align-items: center;
+        gap: 20px;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+    
+    .hostel-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hostel-card img {
+        width: 230px;
+        height: 150px;
+        border-radius: 15px;
+        object-fit: cover;
+        transition: filter 0.3s ease-in-out;
+    }
+    
+    .hostel-card img:hover {
+        filter: brightness(0.8);
+    }
+    
+    .hostel-info {
+        flex: 1;
+    }
+    
+    .hostel-info h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #1a237e;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    .hostel-info h2:hover {
+        color: #e53935;
+    }
+    
+    .hostel-info p {
+        margin: 6px 0;
+        color: #555;
+    }
+    
+    .price {
+        color: #d32f2f;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    .discount {
+        background: #d32f2f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 15px;
+        display: inline-block;
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .discount:hover {
+        transform: scale(1.15);
+    }
+    
+    .amenities {
+        display: flex;
+        gap: 18px;
+        margin-top: 6px;
+    }
+    
+    .amenities img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+    
+    .amenities img:hover {
+        transform: rotate(15deg) scale(1.2);
+        filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+    }
+    </style>
+    <script>
+        function showAmenity(name) {
+            alert(name);
+        }
+    </script>
+</head>
+<body>
+    {%extends 'base.html'%}
+
+    {%block content%}
+
+    <div class="heading">
+        <h1 style="color: black;">Hostels At <span id="cityName">{{city|default:"Chandigarh"}}</span></h1>
+    </div>
+    <div class="hostel-list">
+        {% for hostel in hostels %}
+        <div class="hostel-card">
+            <img src="{{ hostel.image }}" alt="{{ hostel.name }}">
+            <div class="hostel-info">
+                <a href="{{ hostel.template }}"><h2>{{ hostel.name }}</h2></a>
+                <p>Hostel - {{ hostel.distance }}</p>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">{{ hostel.discount }}</span> Dorms From {{ hostel.price }} <del>{{ hostel.original_price }}</del></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{%endblock%}
+</body>
+</html>
+</html>
+</html>

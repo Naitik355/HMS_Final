@@ -1,0 +1,144 @@
+{%extends 'base.html' %}
+{%load static %}
+
+{%block head%}  
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{%endblock%}
+
+    {% block content %}
+    <div class="wraper">
+    <div class="intro">
+       <h1> Meet your people.</h1>
+       <p style="color: white;">Choose where to stay and we'll show you who with!</p>
+       <img src="{% static 'images/arrow.webp' %}" alt="">
+       <img id="chats" src="{% static 'images/hero.chats.webp' %}" alt="">
+    </div>
+    <div class="location">
+        <form action="{% url 'cards' %}" method="GET" id="location_form">
+            <label for="location"><img id="location_img" src="{% static 'images/location_on_16dp_000000_FILL0_wght400_GRAD0_opsz20.png' %}" alt="Location icon"></label>
+            <input type="text" name="location" id="location" placeholder="Where do you want to go?" required>
+            <div style="border-left: 2px solid black; height: 48px; margin: 0 20px;"></div>
+            <label for="checkin"><img id="location_img" src="{% static 'images/today_16dp_000000_FILL0_wght400_GRAD0_opsz20.png' %}" alt=""></label>
+            <input type="date" name="checkin" id="checkin" required>
+            <div style="border-left: 2px solid black; height: 48px; margin: 0 20px;"></div>
+            <label for="checkout"><img id="location_img" src="{% static 'images/event_16dp_000000_FILL0_wght400_GRAD0_opsz20.png' %}" alt=""></label>
+            <input type="date" name="checkout" id="checkout" required>
+            <div style="border-left: 2px solid black; height: 48px; margin: 0 20px;"></div>
+            <label for="guests"><img id="location_img" src="{% static 'images/group_16dp_000000_FILL0_wght400_GRAD0_opsz20.png' %}" alt=""></label>
+            <input type="number" name="guests" id="guests" placeholder="Enter the no. of Guests" required>
+            <div style="border-left: 2px solid black; height: 48px; margin: 0 20px;"></div>
+            <button type="submit" id="button"><b>Let's Go!</b></button>
+        </form>
+        </form>
+    </div>
+</div>
+    <br><br><br>
+    <div class="note">
+        <img src="{% static 'images/calendar-confirmation.svg' %}" alt="">
+        <h4><span style="font-weight: bolder;">Free Cancellation</span> & <span style="font-weight: bolder;">Flexible booking</span> available</h4>
+    </div>
+    <br><br><br>
+    <div class="carousel_back">
+        <h2><span style="background-color: #cc0074; color: white;">Global Travel Deals!</span></h2>
+        <p style="color: white;">BIG discounts on the world's best hostels. T&Cs applied</p>
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="card"><img src="{% static 'images/new friend.webp' %}" alt="">
+                    <a href="template1.html"><span style="font-size: 20px;"><b>NEW FRIENDS HOSTEL
+                    & BAR ADULTS ONLY </b></span></a><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>8.9 Fabulous (739)</b></span><br>
+                    Valladolid, Mexico 
+                </div>
+                <div class="card"><img src="{% static 'images/rivoli.webp' %}" alt="">
+                    <a href="template2.html"><span style="font-size: 20px;"><b>Zostel Delhi</b></span><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>9.3 Superb (3656)</b></span></a><br>
+                    Delhi,India
+                </div>
+                <div class="card"><img src="{% static 'images/eltari.webp' %}" alt="">
+                    <a href="template8.html"><span style="font-size: 20px;"><b>Homefort Stays</b></span><br>
+                        <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>9.4 Superb (51)</b></span></a><br>
+                        Malang,Indonesia 
+                </div>
+                <div class="card"><img src="{% static 'images/sir toby.webp' %}" alt="">
+                    <a href="template3.html"><span style="font-size: 20px;"><b>Backpacker cowies</b></span></a><br>
+                        <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>9.2 Superb (46)</b></span><br>
+                        Prague,Czech Republic
+                </div>
+                <div class="card"><img src="{% static 'images/hoztel jaipur.webp' %}" alt="">
+                    <a href="template4.html"><span style="font-size: 20px;"><b>Hammock Hostel</b></span><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>9.3 Superb (909)</b></span></a><br>
+                    Maharashtra,India 
+                </div>
+                <div class="card"><img src="{% static 'images/purple.webp' %}" alt=""><a href="template5.html"><span style="font-size: 20px;"><b>The voyage - Cafe Hostel CoWork</b></span><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>8.4 Fabulous (4863)</b></span></a><br>
+                    Valencia,Spain 
+                </div>
+                <div class="card"><img src="{% static 'images/white rabbit.jpg' %}" alt=""><a href="template6.html"><span style="font-size: 20px;"><b>goSTOPS Dehradun Maldevta</b></span><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>8.8 Fabulous (1736)</b></span><br></a>
+                    Kuta,Indonesia
+                </div>
+                <div class="card"><img src="{% static 'images/dinosaur.webp' %}" alt=""><a href="template7.html"><span style="font-size: 20px;"><b>Moustache Hostel,Varanasi</b></span><br>
+                    <span id="hostelname">&#9733;</span><span style="font-size: 17px;"><b>8.8 Fabulous (21)</b></span></a><br>
+                    Varanasi,India 
+                </div>
+                
+                    {% if Room_list %}
+                        {% for Room in Room_list %}
+                        <div class="card">
+                            <img src="{{Room.image }}" alt="Room Image" width="200">
+                        <a href="template1.html"><span class="hostel-name"><b> {{Room.hostel_name}}
+                         </b></span></a>
+                        <br>
+                        <span id="hostelname">&#9733;</span><span class="hostel-rating"><b>{{Room.rating}}</b></span><br>
+                        {{Room.city}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                
+            </div>   
+        </div>
+    </div>
+            
+            <div class="buttons">
+                <button class="btn prev">&lt;</button>
+                <button class="btn next">&gt;</button>
+            </div>
+        </div>
+    
+        
+    </div>
+    <div class="cardsforad">
+        <div class="ad_card1">
+            <div class="snote">
+                <h2>View Traveller Profile</h2>
+                <p>See who's going</p></div>
+            <img src="{% static 'images/ups1.webp' %}" alt="">
+        </div>
+        <div class="ad_card2">
+            <div class="snote">
+                <h2>View Traveller Profile</h2>
+                <p>See who's going</p></div>
+            <img src="{% static 'images/usp2.webp' %}" alt="">
+        </div>
+        <div class="ad_card3">
+            <div class="snote">
+                <h2>View Traveller Profile</h2>
+                <p>See who's going</p></div>
+            <img src="{% static 'images/usp3.webp' %}" alt="">
+        </div>
+    </div>
+
+    <div class="newhostel">
+        <div class="lines">
+           <h4>This is the <span style="color: #cc0074;">NEW</span> Hostelworld.</h4> <h2>Helping you <span style="color: #cc0074;">connect with travellers.</span> Even <br><span style="color: #cc0074;">before</span> you get to your <br>
+             hostel.</h2>
+            <a href="#" style="text-decoration: none; color: black;"><span id="check">Check what's new &darr;</span></a>
+        </div>
+        <div class="autoimg">
+            <img src="{% static 'images/The_Spindrift_Hostel-img.webp' %}" alt="">
+        </div>
+    </div>
+    <script src="{% static 'javascript/index.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

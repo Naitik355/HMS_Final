@@ -1,0 +1,176 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}HostelEaze{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}{% endblock %}
+</head>
+
+<style>
+.navbar.transparent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+    z-index: 1000;
+    height: 140px;
+    margin-top: 0px;
+    background-color: #f6e9e9;
+    transition: background 0.3s;
+}
+.logo img {
+    width: 250px;
+    height:200px;
+    position: relative;
+    top: 14px;
+}
+
+.navbar.transparent .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f6e9e9;
+}
+
+.navbar.transparent .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar.transparent .nav-links a {
+    text-decoration: none;
+    color: #090808;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar.transparent .nav-links a:hover {
+    color: #ff4b2b;
+}
+</style>
+<body>
+    
+    <nav class="navbar transparent">
+        <div class="logo">
+            <img src="{% static 'images/Screenshot 2025-04-07 181618.png' %}" alt="logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'HMS_app1_view' %}">Home</a></li>
+            <li><a href="{% url 'aboutus' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+            {% if user.is_authenticated %}
+            <!-- Display Profile Icon if Logged In -->
+            <li><a href="{% url 'HMS_app1_view' %}"><i class="fas fa-user-circle"></i> {{ user.username }}</a></li>
+            <li><a href="{% url 'HMS_app2' %}"><i class="fas fa-user-circle"></i> Ghar Ka Khana</a></li>
+            
+                {% if user.user.role == 'admin' %}
+                <li><a href="{% url 'a_dash' %}">Admin Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% else %}
+                <!-- Display Login Button if Not Logged In -->
+                <li><a href="{% url 'login' %}">Sign Up/Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="newsletter">
+            <h2>Join our adventurous community!</h2>
+            <p>Sign up to our newsletter for deals, inspo, and other travel treats!</p>
+            <input type="email" placeholder="Your email address">
+            <button id="arrowbtn">&rarr;</button>
+        </div>
+        <div class="footer">
+            <div class="footer-column">
+                <h3>Accommodation</h3>
+                <ul>
+                    <li><a href="#">Hostels</a></li>
+                    <li><a href="#">Hotels</a></li>
+                    <li><a href="#">Bed and Breakfast</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Booking Guarantee</a></li>
+                    <li><a href="#">Hostel Awards</a></li>
+                    <li><a href="#">Tours & Experience</a></li>
+                    <li><a href="#">Solo Travel</a></li>
+                    <li><a href="#" style="color: #b3b3b3;">Student Discount</a></li>
+                    <li><a href="#">Roamies</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Hostelworld Group PLC</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help & Support</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Returns & Refund</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Work With Us</h3>
+                <ul>
+                    <li><a href="#">Hostel Sign Up</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                    <li><a href="#">Hostelworld Inbox</a></li>
+                </ul>
+            </div>
+            <div class="footer-column app-s">
+                <h3>Experience Our App</h3>
+                <div class="app-img">
+                    <img src="{% static 'images/app_android.svg' %}" alt="Google Play">
+                    <img src="{% static 'images/app store.png' %}" alt="App Store">
+                </div>
+            </div>
+            <div class="contact-info">
+                <h3>Connect with us</h3>
+                <p>Email: <a href="mailto:costumer@bookstore.com">costumer@hms.com</a></p>
+                <p>Phone: +91 95876XXXXX (11am to 7 pm, Mon-Fri)</p>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="{% static 'images/footer_fb.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'images/footer_ig.png' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'images/footer_x.png' %}" alt="Twitter"></a>
+                <a href="#"><img src="{% static 'images/footer_linkdin.png' %}" alt="Linkedin"></a>
+                <a href="#"><img src="{% static 'images/footer_yt.png' %}" alt="Youtube"></a>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'javascript/base.js' %}"></script>
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar.transparent');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

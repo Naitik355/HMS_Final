@@ -1,0 +1,558 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghar Ka Khana - Hostel Food Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #000;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+    }
+    .logo img {
+      height: 80px;
+    }
+/* General nav layout */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Basic link styles */
+nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown trigger link (styled like a normal link) */
+.dropdown > a {
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Dropdown content - hidden by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #31caec;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+    nav a.active {
+      color: #31caec;
+      font-style: italic;
+    }
+    nav .contact {
+      background: #31caec;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    nav .contact i {
+      margin-right: 6px;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem;
+    }
+    .hero-text {
+      max-width: 50%;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-text h1 .highlight {
+      background: #a1c755;
+      color: #fff;
+      font-style: italic;
+      padding: 0 8px;
+    }
+    .hero-text h1 .yellow {
+      color: #f2c200;
+    }
+    .hero-text p {
+      margin-top: 1rem;
+      color: #161718;
+    }
+    .hero-text .buttons {
+      margin-top: 1.5rem;
+    }
+    .hero-text .buttons button {
+      background: #31caec;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      margin-right: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .hero-text .buttons button.about {
+      background: #31caec;
+    }
+    .hero-img img {
+      width: 600px;
+    }
+    .info-section {
+      background: #fafafa;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .info-section h2 {
+      color: #31caec;
+      margin-bottom: 0.5rem;
+    }
+    .info-section p {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .steps .step {
+      max-width: 250px;
+    }
+    .steps .step img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .steps .step h3 {
+      margin-bottom: 0.5rem;
+    }
+    .meal-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  background-color: #fdfdfd;
+  gap: 30px;
+  text-align: center;
+}
+
+.meal-box {
+  flex: 1 1 300px;
+  max-width: 350px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meal-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.meal-box img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.meal-box h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #450a78;
+}
+
+.meal-box blockquote {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.meal-box p {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00bcd4;
+  margin: 10px 0;
+}
+
+.book-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.book-button:hover {
+  background-color: #e69500;
+}
+    footer {
+      background: #31caec;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1rem;
+    }
+    .about-section {
+  padding: 4rem 3rem;
+  background: #fff;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.about-image img {
+  max-width: 450px;
+  width: 600%;
+}
+
+.about-text {
+  flex: 1;
+  padding-left: 2rem;
+  max-width: 600px;
+}
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #000;
+}
+
+.about-text .highlight {
+  color: #f55;
+}
+
+.about-text p {
+  margin-top: 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.store-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.store-buttons img {
+  height: 60px;
+}
+.custom-footer {
+  background-color: #2d2d2d;
+  color: white;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer-left {
+  flex: 1;
+  min-width: 300px;
+}
+.footer-left p {
+  margin-bottom: 0.5rem;
+}
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.social-icons i {
+  font-size: 1.3rem;
+  color: red;
+  cursor: pointer;
+}
+.footer-logo-text {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.footer-logo {
+  width: 100px;
+}
+.footer-text h2 {
+  font-size: 1.3rem;
+}
+.footer-text .yellow {
+  color: #f2c200;
+  font-weight: bold;
+}
+.contact-info {
+  margin-top: 1rem;
+}
+.contact-info p {
+  margin: 0.3rem 0;
+}
+.contact-info i {
+  color: red;
+  margin-right: 8px;
+}
+.footer-right {
+  flex: 1;
+  min-width: 300px;
+}
+.subscribe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+.subscribe-form input {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #f2c200;
+  color: white;
+}
+.subscribe-form input::placeholder {
+  color: #ccc;
+}
+.subscribe-form button {
+  background: #f2c200;
+  color: black;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.footer-features h3 {
+  margin-bottom: 1rem;
+}
+.footer-features ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+}
+
+
+  </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <img src="{% static 'images/logo.jpeg' %}" alt="Ghar Ka Khana Logo">
+        </div>
+      
+        <nav>
+          <a class="active" href="{% url 'HMS_app2' %}">Home</a>
+          <a class="active" href="{% url 'HMS_app1_view' %}">Hostal Eaze</a>
+      
+          <!-- Dropdown Menu Starts -->
+          <div class="dropdown">
+            <a href="#">Meals ▼</a>
+            <div class="dropdown-content">
+              <a href="{% url 'breakfast' %}">Breakfast</a>
+              <a href="{% url 'lunch' %}">Lunch</a>
+              <a href="{% url 'dinner' %}">Dinner</a>
+            </div>
+          </div>
+          <!-- Dropdown Menu Ends -->
+      
+          <a href="{%url 'aboutus'%}">About Us</a>
+          <a class="contact" href="{% url 'contactUs' %}"><i>📞</i>Contact Us</a>
+        </nav>
+      </header>
+      
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Your Favourite Mess Service Providers<br><span class="highlight">Satisfying</span> Food <br><span class="yellow">at your Doorstep</span></h1>
+      <p>Break your fast with Ghar Ka Khana <br>Why waste food when you have the option to make a choice!</p>
+      <div class="buttons">
+        <button class="about"> <a href="{% url 'aboutus' %}">About Us</a></button>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="{% static 'images/delivery.avif' %}" alt="Scooter Delivery Illustration">
+    </div>
+  </section>
+
+  <section class="info-section">
+    <h2>How we work</h2>
+    <p>Have your preferred breakfast and pay nothing more!</p>
+    <div class="steps">
+      <div class="step">
+        <img src="{% static 'images/icon1.png' %}" alt="Select food">
+        <h3>Select your food preference</h3>
+        <p>From the set of options select your preferred food.</p>
+      </div>
+      <div class="step">
+        <img src="{% static 'images/icon2.png' %}" alt="Timely Delivery">
+        <h3>Timely Delivery</h3>
+        <p>Food will be delivered on-time.</p>
+      </div>
+      <div class="step">
+        <img src="{% static 'images/icon3.png' %}" alt="Best Quality">
+        <h3>Best Quality</h3>
+        <p>We are here to solve your cravings for homely food.</p>
+      </div>
+    </div>
+
+    <h2><span style="color:#31caec">Food</span> Categories</h2>
+    <div class="meal-container">
+      <div class="meal-box">
+        <img src="{% static 'images/icon4.avif'%}" alt="Breakfast Image">
+        <h2><u>Breakfast</u></h2>
+        <blockquote>"Breakfast is like a gentle hug for your stomach"</blockquote>
+        <p>Start your day right with our delicious breakfast from Ghar Ka Khana...</p>
+        <div class="price">₹60/Day</div>
+        <div class="price">₹1500/Month</div>
+        <button class="book-button"><a href="{% url 'slotbooking'%}">Book your slot now</a></button>
+      </div>
+    
+      <div class="meal-box">
+        <img src="{% static 'images/icon5.jpg'%}" alt="Lunch Image">
+        <h2><u>Lunch</u></h2>
+        <blockquote>"The only way to get rid of a temptation is to yield to it"</blockquote>
+        <p>Get ready for a delightful lunch experience coming your way soon!...</p>
+        <div class="price">₹80/Day</div>
+        <div class="price">₹2100/Month</div>
+        <button class="book-button"><a href="{% url 'slotbooking'%}">Book your slot now</a></button>
+      </div>
+    
+      <div class="meal-box">
+        <img src="{% static 'images/dinner.jpeg'%}" alt="Dinner Image">
+        <h2><u>Dinner</u></h2>
+        <blockquote>"Dinner with a view, what more could I ask for?"</blockquote>
+        <p>Get ready for a delightful dining experience with a diverse menu...</p>
+        <div class="price">₹100/Day</div>
+        <div class="price">₹2500/Month</div>
+        <button class="book-button"><a href="{% url 'slotbooking'%}">Book your slot now</a></button>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="custom-footer">
+    <div class="footer-top">
+      <div class="footer-left">
+        <p>Stay Connected</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+  
+        <div class="footer-logo-text">
+          <img src="{% static 'images/logo.jpeg' %}" alt="Ghar Ka Khana Logo" class="footer-logo">
+          <div class="footer-text">
+            <h2><span>Enjoy your</span><br><span class="yellow">Delicious Food</span></h2>
+          </div>
+        </div>
+  
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> support@gharkakhana.com</p>
+          <p><i class="fas fa-phone"></i> +91 83049 17517</p>
+        </div>
+      </div>
+  
+      <div class="footer-right">
+        <form class="subscribe-form">
+          <input type="text" placeholder="Name" required>
+          <input type="text" placeholder="Location/Landmark" required>
+          <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
+        </form>
+  
+        <div class="footer-features">
+          <h3>Features</h3>
+          <ul>
+            <li>Personalized Plan</li>
+            <li>Free and on-time Delivery</li>
+            <li>Hygienic and Safe Packaging</li>
+            <li>Add-ons Facility</li>
+            <li>Meals for the Day</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"></div>
+      <p>Copyright © 2025. Ghar Ka Khana. All rights reserved.</p>
+    </div>
+  </footer>
+  
+
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The voyage - Cafe Hostel CoWork{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>The voyage - Cafe Hostel CoWork</h1>
+    <div class="search-bar">
+        <span>📍</span>
+        <input type="text" value="The voyage - Cafe Hostel CoWork" aria-label="Location">
+        <span>📅</span>
+        <input type="text" id="checkin" placeholder="Select Check-in Date" onfocus="this.type='date'" aria-label="Check-in date">
+        <span>📅</span>
+        <input type="text" id="checkout" placeholder="Select Check-out Date" onfocus="this.type='date'" aria-label="Check-out date">
+        <span>👤</span>
+        <input type="number" value="1" aria-label="Number of guests">
+        <button>Let's go!</button>
+    </div>
+</div>
+<div class="container">
+    <div class="images">
+        <img src="{% static 'images/p10.jpg' %}" alt="Pool Area">
+        <img src="{% static 'images/p12.jpg' %}" alt="Bar Area">
+        <img src="{% static 'images/p13.jpg' %}" alt="Night Party">
+        <img src="{% static 'images/p14.jpg' %}" alt="Dormitory">
+    </div>
+    <div class="info">
+        <p>Hostel Pune, India 4.77km from city centre</p>
+        <h2>About</h2>
+        <p>Located amidst the Pune city, The voyage - Cafe Hostel CoWork welcomes its guests with a multi cuisine restaurant, an innovative co-working space and a home-like environment.
+            <br>
+            <br>
+           The voyage - Cafe Hostel CoWork, themed with victorious spirit and adventures of sea life, settles you into the calming and robust lifestyle of an undestined traveller concluding in a range of perspectives. <br>
+            <br>
+            <b>Property Policies & Conditions:</b>
+            <br>
+            <b>1. Cancellation policy:</b> 1 day before arrival. In case of a late cancellation or No Show, you will be charged the first night of your stay. <br>
+            <b>2. Check in time:</b> From 13:00 to 23:00 . <br>
+            <b>3. Check out time:</b> From 00:00 to 11:00 .
+            <p>Payment upon arrival by cash. <br>
+                Taxes not included - 12% <br>
+                Breakfast not included. <br>
+                No curfew.</p>
+        </p>
+        <div class="room-section">
+            <h2>
+                Choose your room 
+                <span class="span">
+                    Selling out fast!
+                </span>
+            </h2>
+            <div class="room">
+                <div class="room-info">
+                    <p class="room-title">Female Social Pod in 5-Bed Dorm</p>
+                    <p>Dormitory style and range in size from 2 beds upwards. They offer Female accommodations.</p>
+                    <p>👤 Sleeps 5 | Only 3 beds left!</p>
+                    <span class="tag">
+                        Best Bed price
+                    </span>
+                </div>
+                <h5 class="room-price">Rs.3000</h5>
+                <a href="{% url  'payments' %}" class="add-button">Choose a Room</a>
+            </div>
+            <div class="room">
+                <div class="room-info">
+                    <p class="room-title">Mixed Social Pod in 8-Bed Dorm</p>
+                    <p>Fresh, clean, spacious, very comfortable mixed room with two windows for better air circulation, it has air Conditioning, with 8 single beds.</p>
+                    <p>👤 Sleeps 8 | Only 2 beds left!</p>
+                    <span class="temp">
+                        Only 2 Beds Left
+                    </span>
+                </div>
+                <h5 class="price">Rs.5000</h5>
+                <a href="{% url  'payments' %}" class="add-button">Choose a Room</a>
+            </div>
+            <div class="room">
+                <div class="room-info">
+                    <p class="room-title">Backpacker Pod in 8-Bed Mixed Dorm</p>
+                    <p>A comfortable and well-ventilated dorm with large windows, air conditioning, and premium single beds for a restful stay.</p>
+                    <p>👤 Sleeps 8 | Only 2 beds left!</p>
+                    <span class="temp">
+                        Only 1 Beds Left
+                    </span>
+                </div>
+                <h5 class="price">Rs.5000</h5>
+                <a href="{% url 'payments' %}" class="add-button">Choose a Room</a>
+            </div>
+        </div>
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="review-summary">
+                <span class="rating-score">⭐ <strong>9.3</strong> Superb (809)</span>
+                <div class="review-bars">
+                    <p>Security <span>9.7</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 97%;"></div></div>
+
+                    <p>Location <span>8.6</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 86%;"></div></div>
+
+                    <p>Staff <span>8.9</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 89%;"></div></div>
+
+                    <p>Atmosphere <span>8.4</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 84%;"></div></div>
+
+                    <p>Cleanliness <span>8.8</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 88%;"></div></div>
+
+                    <p>Facilities <span>8.3</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 83%;"></div></div>
+
+                    <p>Value for Money <span>9.2</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 92%;"></div></div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <p><strong>Smaira</strong> - Female,27, Yamunanagar ⭐6.5</p>
+                <p>This is the best hostel in Pune! It is such good value and the happy hour is the best. Felix does a great job of creating an atmosphere each night and welcoming each guest.</p>
+            </div>
+
+            <div class="review-card">
+                <p><strong>Rahul</strong> - Male, 25, Jalandhar ⭐8.5</p>
+                <p>Best hostel atmosphere I've had in months. Felix creates a great vibe with the free drinks hour, and it's a great way to mingle with everyone. Great location and rooms.</p>
+            </div>
+        </div>
+{% endblock %}

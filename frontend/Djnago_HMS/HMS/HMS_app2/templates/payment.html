@@ -1,0 +1,178 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment & Delivery | Ghar Ka Khana</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fdf6ed;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header a {
+      display: inline-block;
+      margin-top: 15px;
+      background-color: white;
+      color: #ff6e7f;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header a:hover {
+      background-color: #fff0f4;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #ff6e7f;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+   a{
+    text-decoration: none;
+   } 
+    input, select, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .payment-methods label {
+      font-weight: normal;
+    }
+
+    button {
+      background-color: #ff6e7f;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e35b6d;
+    }
+
+    @media (max-width: 600px) {
+      .payment-methods {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🧾 Payment & Delivery</h1>
+    <a href="{%url 'HMS_app2'%}">⬅ Home</a>
+  </header>
+  {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+      <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+  {% endif %}
+
+  <div class="container">
+    <h2>Delivery Details</h2>
+    <form action="#" method="POST">
+      {%csrf_token%}
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <label for="delivery-time">Preferred Delivery Time</label>
+      <input type="time" id="delivery-time" name="delivery-time" required>
+
+      <h2>Payment Information</h2>
+
+      <label>Payment Method</label>
+      <div class="payment-methods">
+        <label><input type="radio" name="payment" value="UPI" required> UPI</label>
+        <label><input type="radio" name="payment" value="Card"> Credit/Debit Card</label>
+        <label><input type="radio" name="payment" value="COD"> Cash on Delivery</label>
+      </div>
+
+      <label for="upi-id" id="upi-label" style="display:none;">Enter UPI ID</label>
+      <input type="text" id="upi-id" name="upi-id" style="display:none;" placeholder="example@upi">
+
+      <label for="card-number" id="card-label" style="display:none;">Enter Card Number</label>
+      <input type="text" id="card-number" name="card-number" style="display:none;" placeholder="XXXX-XXXX-XXXX-XXXX">
+
+      <button type="submit">Confirm & Pay</button>
+      
+    </form>
+  </div>
+
+  <script>
+    const paymentRadios = document.querySelectorAll('input[name="payment"]');
+    const upiField = document.getElementById('upi-id');
+    const upiLabel = document.getElementById('upi-label');
+    const cardField = document.getElementById('card-number');
+    const cardLabel = document.getElementById('card-label');
+
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const selected = radio.value;
+        upiField.style.display = selected === 'UPI' ? 'block' : 'none';
+        upiLabel.style.display = selected === 'UPI' ? 'block' : 'none';
+        cardField.style.display = selected === 'Card' ? 'block' : 'none';
+        cardLabel.style.display = selected === 'Card' ? 'block' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

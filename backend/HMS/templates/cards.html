@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Listing</title>
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: radial-gradient(circle, #ffffff, #dfe9f3);
+        margin: 0;
+        color: #444;
+    }
+    a{
+        text-decoration: none;
+    }
+    .heading {
+        font-size: 32px;
+        margin-bottom: 10px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .hostel-list {
+        max-width: 1000px;
+        margin: auto;
+    }
+    
+    .hostel-card {
+        display: flex;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+        align-items: center;
+        gap: 20px;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+    
+    .hostel-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hostel-card img {
+        width: 230px;
+        height: 150px;
+        border-radius: 15px;
+        object-fit: cover;
+        transition: filter 0.3s ease-in-out;
+    }
+    
+    .hostel-card img:hover {
+        filter: brightness(0.8);
+    }
+    
+    .hostel-info {
+        flex: 1;
+    }
+    
+    .hostel-info h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #1a237e;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    .hostel-info h2:hover {
+        color: #e53935;
+    }
+    
+    .hostel-info p {
+        margin: 6px 0;
+        color: #555;
+    }
+    
+    .price {
+        color: #d32f2f;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    .discount {
+        background: #d32f2f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 15px;
+        display: inline-block;
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .discount:hover {
+        transform: scale(1.15);
+    }
+    
+    .amenities {
+        display: flex;
+        gap: 18px;
+        margin-top: 6px;
+    }
+    
+    .amenities img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+    
+    .amenities img:hover {
+        transform: rotate(15deg) scale(1.2);
+        filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2));
+    }
+    </style>
+    <script>
+        function showAmenity(name) {
+            alert(name);
+        }
+    </script>
+</head>
+<body>
+    {%extends 'base.html'%}
+
+    {%block content%}
+
+    <div class="heading">
+        <h1>Hostels At {{ city }}</h1>
+    </div>
+    <div class="hostel-list">
+        <div class="hostel-card">
+            <img src="https://im.whatshot.in/img/2021/Sep/hostel-for-working-women-500x500-1630650858.png?wm=1&w=1200&h=630&cc=1" alt="YWCA Working Women's Hostel">
+            <div class="hostel-info">
+                <a href="template9.html"><h2>YWCA Working Women's Hostel</h2>
+                <p>Hostel - 5km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-30%</span> Dorms From ₹7000 <del>₹10000</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://www.addressguru.in/images/611876091.webp" alt="Maharana Partap Hostel">
+            <div class="hostel-info">
+                <a href="template10.html"><h2>Maharana Partap Hostel</h2>
+                <p>Hostel - 7km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-25%</span> Dorms From ₹6000 <del>₹8000</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://content.jdmagicbox.com/comp/chandigarh/h1/0172px172.x172.181113203313.j7h1/catalogue/mehar-chand-mahajan-chandigarh-hostel-for-boy-students-685q4sqemu.jpg" alt="Mehr Chand Mahajan">
+            <div class="hostel-info">
+                <a href="template11.html"><h2>Mehr Chand Mahajan</h2>
+                <p>Hostel - 6km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-28%</span> Dorms From ₹6500 <del>₹9000</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://content.jdmagicbox.com/comp/chandigarh/t7/0172px172.x172.170907025821.u2t7/catalogue/touring-officers-hostel-chandigarh-sector-26-chandigarh-hostels-df5age97bu.jpg" alt="Touring Officers Hostel">
+            <div class="hostel-info">
+                <a href="template12.html"><h2>Touring Officers Hostel</h2>
+                <p>Hostel - 9km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-35%</span> Dorms From ₹5200 <del>₹8000</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/23/ce/49/dormitory.jpg" alt="Youth Hostel Chandigarh">
+            <div class="hostel-info">
+                <a href="template13.html"><h2>Youth Hostel Chandigarh</h2>
+                <p>Hostel - 10km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-38%</span> Dorms From ₹5600 <del>₹9000</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://content3.jdmagicbox.com/comp/chandigarh/q2/0172px172.x172.240206173032.v5q2/catalogue/tg9tyuqn5da6l57-re015yyakp.jpg" alt="Kumar PG & Hostel">
+            <div class="hostel-info">
+                <a href="template14.html"><h2>Kumar PG & Hostel</h2>
+                <p>Hostel - 8km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-33%</span> Dorms From ₹5000 <del>₹7500</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr_tZElrsyJXMoDYzD80nohTE5mPC3czbBsA&s" alt="Anagha Home Stay">
+            <div class="hostel-info">
+                <a href="template15.html"><h2>Anagha Home Stay</h2>
+                <p>Hostel - 11km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-32%</span> Dorms From ₹5800<del>₹8500</del></p>
+            </div>
+        </div>
+        <div class="hostel-card">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/437825388.jpg?k=ca5b0786d851f30a78bc0086c9c063be0d13de8a4721195a820dc6de112c9acb&o=&hp=1" alt="Anchorage">
+            <div class="hostel-info">
+                <a href="template16.html"><h2>Anchorage</h2>
+                <p>Hostel - 7km from city centre</p></a>
+                <div class="amenities">
+                    <img src="https://cdn-icons-png.flaticon.com/128/93/93158.png" onclick="showAmenity('WiFi')" alt="WiFi">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1684/1684375.png" onclick="showAmenity('Air Conditioner')" alt="Air Conditioner">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1071/1071521.png" onclick="showAmenity('Luggage Storage')" alt="Luggage Storage">
+                </div>
+                <p class="price"><span class="discount">-32%</span> Dorms From ₹5800 <del>₹8500</del></p>
+            </div>
+        </div>
+    </div>
+{%endblock%}
+</body>
+</html>

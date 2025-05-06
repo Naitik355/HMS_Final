@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Namma Mess</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #111010;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: white;
+    }
+    .logo img {
+      height: 70px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #000;
+      font-size: 1.1rem;
+    }
+    nav a.active {
+      color: #31caec;
+      font-style: italic;
+    }
+    .about-hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #d3f1f5;
+    }
+    .about-hero h1 {
+      font-size: 2.5rem;
+      color: #31caec;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+    }
+    .about-hero p {
+      font-size: 1.2rem;
+      color: #070707;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .about-text .highlight {
+      color: #f2c200;
+      font-weight: bold;
+    }
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+    .about-image img {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-left: 120px;
+    }
+  
+    footer {
+      background: #31caec;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1rem;
+    }
+    .about-section {
+  padding: 4rem 3rem;
+  background: #fff;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.about-image img {
+  max-width: 450px;
+  width: 600%;
+}
+
+.about-text {
+  flex: 1;
+  padding-left: 2rem;
+  max-width: 600px;
+}
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #000;
+}
+
+.about-text .highlight {
+  color: #31caec;
+}
+
+.about-text p {
+  margin-top: 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.store-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.store-buttons img {
+  height: 60px;
+}
+.custom-footer {
+  background-color: #2d2d2d;
+  color: white;
+  padding: 3rem 2rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer-left {
+  flex: 1;
+  min-width: 300px;
+}
+.footer-left p {
+  margin-bottom: 0.5rem;
+}
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.social-icons i {
+  font-size: 1.3rem;
+  color: red;
+  cursor: pointer;
+}
+.footer-logo-text {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.footer-logo {
+  width: 100px;
+}
+.footer-text h2 {
+  font-size: 1.3rem;
+}
+.footer-text .yellow {
+  color: #f2c200;
+  font-weight: bold;
+}
+.contact-info {
+  margin-top: 1rem;
+}
+.contact-info p {
+  margin: 0.3rem 0;
+}
+.contact-info i {
+  color: red;
+  margin-right: 8px;
+}
+.footer-right {
+  flex: 1;
+  min-width: 300px;
+}
+.subscribe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+.subscribe-form input {
+  flex: 1;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #f2c200;
+  color: white;
+}
+.subscribe-form input::placeholder {
+  color: #ccc;
+}
+.subscribe-form button {
+  background: #f2c200;
+  color: black;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.footer-features h3 {
+  margin-bottom: 1rem;
+}
+.footer-features ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+}
+
+.why-choose-us {
+      padding: 60px 20px;
+    }
+
+    .why-choose-us h2 {
+      font-size: 2.5em;
+      color: #000;
+      margin-left: 550px;
+    }
+
+    .why-choose-us h2 span {
+      color: crimson;
+    }
+
+    .why-choose-us p.subtitle {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #333;
+      margin-left: 520px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+      padding: 0 40px;
+    }
+
+    .feature {
+      padding: 20px;
+    }
+
+    .feature img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      font-size: 0.95em;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .why-choose-us {
+        padding: 40px 10px;
+      }
+
+      .features {
+        gap: 20px;
+      }
+
+      .feature img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="./images/logo.jpeg" alt="Ghar Ka Khana Logo">
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="plans.html">Plans</a>
+      <a class="active" href="about.html">About Us</a>
+      <a href="contactus.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <section class="about-hero">
+    <h1>About Ghar Ka Khana</h1>
+    <p>Home-cooked happiness, delivered fresh to your hostel or doorstep every single day.</p>
+  </section>
+
+  <section class="about-content">
+    <div class="about-text">
+      <p><strong>Ghar Ka Khana</strong> is a passion project created to solve a very real problem – lack of access to fresh, nutritious, and homely meals for people living away from home.</p>
+      <p>We understand the craving for <span class="highlight">"Ghar ka khana"</span>, and that’s why we deliver lovingly prepared meals that remind you of home. Our daily menus are carefully curated and cooked with hygiene, heart, and simplicity – just like your mom would make.</p>
+      <p>Whether you're a student, professional, or just someone who’s tired of unhealthy options, we’ve got your back. We offer affordable daily and monthly plans for breakfast, lunch, and dinner with timely doorstep delivery.</p>
+      <p>Join our growing family and experience food that brings comfort and joy to your everyday life.</p>
+    </div>
+    <div class="about-image">
+      <img src="./images/about-us-page-img.png" alt="Our kitchen in action">
+    </div>
+  </section>
+
+  <section class="why-choose-us">
+    <h2><span>Why</span> Choose Us</h2>
+    <p class="subtitle">The best food for you at affordable prices</p>
+
+    <div class="features">
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="Personalized Plan">
+        <h3>Personalized Plan</h3>
+        <p>With our wide Menu and Affordable prices,<br>you can personalize your order.</p>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Free Delivery">
+        <h3>Free and on-time Delivery</h3>
+        <p>Free delivery services at your doorstep.<br>Choose the time and place of your food delivery.</p>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="Safe Packaging">
+        <h3>Hygienic and Safe Packaging</h3>
+        <p>Each food item will have proper packaging<br>to secure the delicacy of the food.</p>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Add-ons">
+        <h3>Add-ons Facility</h3>
+        <p>With Ghar ka Khana’s monthly subscription,<br>add delicious dishes to the main menu, as per mood.</p>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Meals for the Day">
+        <h3>Meals for the Day</h3>
+        <p>A single stop for your daily food requirements.</p>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/6468/6468224.png" alt="Easy Regulation">
+        <h3>Easy Regulation with App</h3>
+        <p>Track your orders and subscription with our<br>easy-to-use mobile app.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="custom-footer">
+    <div class="footer-top">
+      <div class="footer-left">
+        <p>Stay Connected</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+  
+        <div class="footer-logo-text">
+          <img src="./logo.jpeg" alt="Namma Mess Logo" class="footer-logo">
+          <div class="footer-text">
+            <h2><span>Enjoy your</span><br><span class="yellow">Delicious Food</span></h2>
+          </div>
+        </div>
+  
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> support@gharkakhana.com</p>
+          <p><i class="fas fa-phone"></i> +91 83049 17517</p>
+        </div>
+      </div>
+  
+      <div class="footer-right">
+        <form class="subscribe-form">
+          <input type="text" placeholder="Name" required>
+          <input type="text" placeholder="Location/Landmark" required>
+          <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
+        </form>
+  
+        <div class="footer-features">
+          <h3>Features</h3>
+          <ul>
+            <li>Personalized Plan</li>
+            <li>Free and on-time Delivery</li>
+            <li>Hygienic and Safe Packaging</li>
+            <li>Add-ons Facility</li>
+            <li>Meals for the Day</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2025. Ghar Ka Khana. All rights reserved.</p>
+    </div>
+  </footer>
+  
+
+</body>
+</html>

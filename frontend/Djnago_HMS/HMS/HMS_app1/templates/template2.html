@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Zostel Delhi{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>Zostel Delhi</h1>
+    <div class="search-bar">
+        <span>📍</span>
+        <input type="text" value="Zostel Delhi" aria-label="Location">
+        <span>📅</span>
+        <input type="text" id="checkin" placeholder="Select Check-in Date" onfocus="this.type='date'" aria-label="Check-in date">
+        <span>📅</span>
+        <input type="text" id="checkout" placeholder="Select Check-out Date" onfocus="this.type='date'" aria-label="Check-out date">
+        <span>👤</span>
+        <input type="number" value="1" aria-label="Number of guests">
+        <button>Let's go!</button>
+    </div>
+</div>
+<div class="container">
+    <div class="images">
+        <img src="{% static 'images/p20.webp' %}" alt="Pool Area">
+        <img src="{% static 'images/p19.jpg' %}" alt="Bar Area">
+        <img src="{% static 'images/p13.jpg' %}" alt="Night Party">
+        <img src="{% static 'images/p21.jpg' %}" alt="Dormitory">
+    </div>
+    <div class="info">
+        <p>Hostel New Delhi, India 11.36km from city centre</p>
+        <h2>About</h2>
+        <p>Zostel Delhi is THE most centrally located, top-ranked backpacker hostel in Delhi. Our hostel is close to the direct airport metro and a short walk away from the train station, Connaught Place and Old Delhi. One of the oldest hostels in Delhi and having served more than 50,000 backpackers. <br>
+            <br>
+            <b>Key Features:</b>
+            <br>
+            <b>1. Prime Location:</b> Located near the New Delhi Railway Station, with easy access to the airport metro, Connaught Place, and Old Delhi. 
+            <br>
+            <b>2. Comfortable Accommodations:</b> Offers both dormitories and private rooms, all equipped with air conditioning and essential amenities.  <br>
+            <b>3. Vibrant Common Areas:</b>Features ample common spaces, including a rooftop terrace, fostering social interactions among guests.
+        </p>
+        <div class="room-section">
+            <h2>
+                Choose your room 
+                <span class="span">
+                    Selling out fast!
+                </span>
+            </h2>
+            <div class="room">
+                <div class="room-info">
+                    <p class="room-title">2-Bed Private Backpacker Room</p>
+                    <p>A cosy en-suite room with two single beds, AC, and TV.</p>
+                    <p>👤 Sleeps 8 | Comfortable Deluxe Beds</p>
+                    <span class="tag">
+                        Best Bed price
+                    </span>
+                </div>
+                <h5 class="room-price">Rs.7500</h5>
+                <a href="{% url 'payments' %}" class="add-button">Choose a Room</a>
+            </div>
+            <div class="room">
+                <div class="room-info">
+                    <p class="room-title">10-Bed Mixed Social Dorm</p>
+                    <p>Air-conditioned 6 bed with shared washrooms with 1 single bed.</p>
+                    <p>👤 Sleeps 10 | Comfortable Beds</p>
+                    <span class="temp">
+                        Only 2 rooms Left
+                    </span>
+                </div>
+                <h5 class="price">Rs.9000</h5>
+                <a href="{% url 'payments' %}" class="add-button">Choose a Room</a>
+            </div>
+        </div>
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="review-summary">
+                <span class="rating-score">⭐ <strong>9.0</strong> Superb (809)</span>
+                <div class="review-bars">
+                    <p>Security <span>8.5</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 85%;"></div></div>
+
+                    <p>Location <span>7.9</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 79%;"></div></div>
+
+                    <p>Staff <span>9.0</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
+
+                    <p>Atmosphere <span>8.5</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 85%;"></div></div>
+
+                    <p>Cleanliness <span>8.8</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 88%;"></div></div>
+
+                    <p>Facilities <span>8.7</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 87%;"></div></div>
+
+                    <p>Value for Money <span>9.4</span></p>
+                    <div class="progress-bar"><div class="fill" style="width: 94%;"></div></div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <p><strong>Anchal</strong> - Female, 19, Noida ⭐8.8</p>
+                <p>This is the best hostel in Delhi! It is such good value and the happy hour is the best. Felix does a great job of creating an atmosphere each night and welcoming each guest.</p>
+            </div>
+
+            <div class="review-card">
+                <p><strong>Sachin</strong> - Male, 32, Sonipat ⭐7.6</p>
+                <p>Best hostel atmosphere I've had in months. Felix creates a great vibe with the free drinks hour, and it's a great way to mingle with everyone. Great location and rooms.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

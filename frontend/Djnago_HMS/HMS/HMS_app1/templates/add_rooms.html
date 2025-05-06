@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+form {
+    width: 100%;
+}
+
+label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: #2575fc;
+}
+
+button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+button:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Add Room</h1>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token%}
+                <label for="hostel_name">Hostel Name</label>
+                <input type="text" name="hostel_name" placeholder="Hostel Name" required />
+                <label for="rating">Rating</label>
+                <input type="text" name="rating" placeholder="Rating" required />
+                <label for="city">City</label>
+                <input type="text" name="city" placeholder="City" required />
+                <label for="image">Hostel Image</label>
+                <input type="file" name="image_name" accept="image/*" required />
+                <button type="submit">Add Room</button>
+              </form>
+              
+              <script>
+              document.getElementById('addRoomForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+              
+                const form = e.target;
+                const fileInput = form.image_file;
+              
+                // Only extract the file name
+                const imageName = fileInput.files[0]?.name;
+              
+                if (!imageName) {
+                  alert("Please select an image file.");
+                  return;
+                }
+              
+                const data = {
+                  hostel_name: form.hostel_name.value,
+                  rating: form.rating.value,
+                  city: form.city.value,
+                  image_name: imageName  // Send only the file name
+                };
+              
+                fetch('http://localhost:5000/api/room', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(result => {
+                  console.log("Room added:", result);
+                })
+                .catch(err => {
+                  console.error("Error:", err);
+                });
+              });
+              </script>
+              

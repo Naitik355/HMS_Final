@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Hostel Management System{% endblock %}
+
+{% block head %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .search-section {
+        background: #6a0dad;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    .search-box {
+        background: white;
+        padding: 10px;
+        border-radius: 25px;
+        display: inline-flex;
+        align-items: center;
+        width: 50%;
+    }
+    .search-box input {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .search-box .icon {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .container {
+        width: 50%;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    h2 {
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input, textarea, select {
+        width: 75%;
+        padding: 15px;
+        margin-top: 7px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        background: #5cb85c;
+        color: white;
+        padding: 10px;
+        border: none;
+        width: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #4cae4c;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="search-section">
+    <div class="search-box">
+        <span class="icon">🔍</span>
+        <input type="text" id="search-input" placeholder="How can we help?">
+    </div>
+</div>
+<div class="container">
+    <h2 id="contact-title">Contact Us</h2>
+    <form id="contact-form" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email" id="email-label">Your Email Address</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="subject" id="subject-label">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+            <label for="description" id="description-label">Description</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+        </div>
+        <button type="submit">Submit Request</button>
+    </form>
+</div>
+
+<script>
+    function changeLanguage(lang) {
+        let translations = {
+            en: "English (US) ▼",
+            es: "Español ▼",
+            fr: "Français ▼",
+            de: "Deutsch ▼", 
+            it: "Italiano ▼",
+            zh: "中文 ▼"
+        };
+        document.querySelector(".dropdown a").textContent = translations[lang];
+    }
+
+    document.getElementById('language-selector').addEventListener('change', function() {
+        let lang = this.value;
+        let translations = {
+            en: { contact: "Contact Us", email: "Your Email Address", subject: "Subject", description: "Description" },
+            es: { contact: "Contáctenos", email: "Su dirección de correo", subject: "Asunto", description: "Descripción" },
+            fr: { contact: "Nous contacter", email: "Votre adresse e-mail", subject: "Sujet", description: "Description" },
+            de: { contact: "Kontaktieren Sie uns", email: "Ihre E-Mail-Adresse", subject: "Betreff", description: "Beschreibung" },
+            it: { contact: "Contattaci", email: "Il tuo indirizzo email", subject: "Oggetto", description: "Descrizione" },
+            zh: { contact: "联系我们", email: "您的电子邮件地址", subject: "主题", description: "描述" }
+        };
+        document.getElementById('contact-title').textContent = translations[lang].contact;
+        document.getElementById('email-label').textContent = translations[lang].email;
+        document.getElementById('subject-label').textContent = translations[lang].subject;
+        document.getElementById('description-label').textContent = translations[lang].description;
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,215 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="{%static 'images/icon.png'%}" type="image/x-icon">
+        <title>About Us</title>
+    </head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ffe6e6, #ccf2f4);
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            font-size: 3rem;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffafcc;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        h2 {
+            font-size: 2.5rem;
+            color: #3f72af;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        h3 {
+            font-size: 1.7rem;
+            color: #ff9f1c;
+            margin-top: 15px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            background: linear-gradient(135deg, #fef3c7, #ffeedf);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        li:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        li p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .landing-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+            background: linear-gradient(135deg, #ff6f61, #ff9f1c);
+            border: none;
+            border-radius: 10px;
+            margin-top: 40px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .landing-button:hover {
+            background: linear-gradient(135deg, #ff9f1c, #ff6f61);
+        }
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .landing-button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .landing-button {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+
+    </style>
+    <body>
+        <div class="container">
+            <h1>About Us</h1>
+
+            <p>
+                Welcome to Hostel Management System (HMS), your go-to platform for efficient and seamless hostel management. Whether you are a student, a hostel administrator, or a parent, we are here to make your hostel experience smooth and hassle-free.
+            </p>
+
+            <h2>Our Mission</h2>
+            <p>
+                At Hostel Management System (HMS), we aim to revolutionize the way hostels are managed. Our mission is to provide a comprehensive solution that simplifies hostel administration, enhances student experience, and ensures a safe and comfortable living environment.
+            </p>
+
+            <h2>What We Offer</h2>
+            <ul>
+                <li>
+                    <h3>Efficient Room Allocation:</h3>
+                    <p>
+                        Our system streamlines the room allocation process, ensuring that students are assigned rooms quickly and fairly. Say goodbye to manual allocation and hello to efficiency.
+                    </p>
+                </li>
+                <li>
+                    <h3>Student Management:</h3>
+                    <p>
+                        Keep track of student information, attendance, and disciplinary records all in one place. Our platform makes it easy to manage student data securely and efficiently.
+                    </p>
+                </li>
+                <li>
+                    <h3>Facility Management:</h3>
+                    <p>
+                        Manage hostel facilities, maintenance requests, and inventory with ease. Ensure that all facilities are in top condition and address issues promptly.
+                    </p>
+                </li>
+                <li>
+                    <h3>Community Building:</h3>
+                    <p>
+                        Foster a sense of community among hostel residents with our communication tools. Organize events, send announcements, and keep everyone connected.
+                    </p>
+                </li>
+            </ul>
+
+            <h2>Our Story</h2>
+            <p>
+                Founded in 2024, Hostel Management System (HMS) was created to address the challenges faced by hostel administrators and residents. Our journey began with a vision to simplify hostel management and enhance the living experience for students. Today, we are proud to serve hostels across the country.
+            </p>
+
+            <h2>Join Us on the Journey</h2>
+            <p>
+                We invite you to join us in transforming hostel management. Whether you are looking to improve your hostel's operations or seeking a better living experience, HMS is here to help. Let's create a better hostel environment together!
+            </p>
+
+            <a href="{%url 'HMS_app1_view'%}" class="landing-button">Get Started with HMS!</a>
+        </div>
+    </body>
+</html>

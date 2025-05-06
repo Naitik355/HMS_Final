@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 20px;">
+    <h2>Debug Information</h2>
+    {% if is_authenticated %}
+        <p>Username: {{ username }}</p>
+        <p>Role: {{ role }}</p>
+        <p>User object: {{ request.user }}</p>
+        <p>Custom User object: {{ request.user.user }}</p>
+    {% else %}
+        <p>Not authenticated</p>
+    {% endif %}
+</div>
+{% endblock %} 

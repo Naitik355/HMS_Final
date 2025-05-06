@@ -1,0 +1,202 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Now | Ghar Ka Khana</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    a{
+      text-decoration: none;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #dae9f1;
+      color: #333;
+    }
+
+    header {
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(to right, #31caec, #2481eb);
+      color: white;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+
+    .home-button {
+        display: inline-block;
+      margin-top: 15px;
+      background-color: white;
+      color: #f7971e;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.8s ease;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin: 15px 0 5px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, #31caec, #2481eb);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #e18717;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- <header>
+    <h1>🛒 Buy Now</h1>
+    <p>Get your favorite Ghar Ka Khana delivered fresh to your door!</p>
+  </header> -->
+
+  <header>
+    <h1>🛒 Order Now</h1>
+    <p>Get your favorite Ghar Ka Khana delivered fresh to your door!</p>
+    <a class="home-button" href="{%url 'HMS_app2'%}" 
+    
+    " onmouseover="this.style.backgroundColor='#fff4d4'" onmouseout="this.style.backgroundColor='white'">
+      ⬅️ Home
+    </a>
+  </header>
+  
+
+  <div class="container">
+    <form action="#" method="POST">
+      {% csrf_token %}
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+
+      <label for="email">Email (optional)</label>
+      <input type="email" id="email" name="email">
+
+      <label for="dish">Select Dish</label>
+      <select id="dish" name="dish" required>
+        <option value="">-- Choose a Dish --</option>
+        <option>Rajma Chawal</option>
+        <option>Paneer Butter Masala</option>
+        <option>Veg Thali</option>
+        <option>Chole Bhature</option>
+        <option>Palak Paneer</option>
+        <option>Kadhi Chawal</option>
+        <option>Matar Paneer</option>
+        <option>Any Other (Mention Below)</option>
+      </select>
+
+      <label for="dish">Select Quantity</label>
+      <select id="dish" name="dish" required>
+        <option value="">-- Choose a Quantity --</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>Any Other (Mention Below)</option>
+      </select>
+
+      <label for="dish">Select Naan/Roti</label>
+      <select id="dish" name="dish" required>
+        <option value="">-- Choose a Naan/Roti --</option>
+        <option>Simple Naan</option>
+        <option>Butter Naan </option>
+        <option>Garlic Naan</option>
+        <option>Peshwari Naan</option>
+        <option>Keema Naan</option>
+        <option>Tandoori Roti</option>
+        <option>Prantha</option>
+        <option>Any Other (Mention Below)</option>
+      </select>
+
+      <label for="dish">Select Quantity</label>
+      <select id="dish" name="dish" required>
+        <option value="">-- Choose a Quantity --</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>Any Other (Mention Below)</option>
+      </select>
+
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" name="notes" rows="3" placeholder="Any instructions? Allergies? etc."></textarea>
+
+      <button type="submit" class="submit-btn"><a href="{% url 'payment_page'%}">Place Your Order</a></button>
+    </form>
+  </div>
+
+</body>
+</html>

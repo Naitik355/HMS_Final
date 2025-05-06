@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Room</title>
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+}    
+
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #5c3d8f;
+    width: 100%;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"],
+input[type="number"] {
+    background-color: #fafafa;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color: #5c3d8f;
+    outline: none;
+    background-color: #f0e6f7;
+}
+
+button {
+    background-color: #5c3d8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+   
+    <h1>Edit Room</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="hostel_name">Hostel Name:</label>
+        <input type="text" name="hostel_name" value="{{ room.hostel_name }}" required>
+    
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating" value="{{ room.rating }}" min="1" max="5" required>
+    
+        <label for="city">City:</label>
+        <input type="text" name="city" value="{{ room.city }}" required>
+    
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*">
+    
+        <button type="submit">Update Room</button>
+    </form>
+    
+    
+</body>
+</html>

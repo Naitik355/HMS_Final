@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('background.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #dea96b;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5a3e9e;
+    font-size: 45px;
+    animation: slideInDown 1s ease-in-out;
+}
+
+/* Filter Section */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.filter-group input, 
+.filter-group select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #5a3e9e;
+    outline: none;
+    transform: scale(1.05);
+}
+
+/* Filter Button */
+button {
+    background: #5a3e9e;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #4a2c8a;
+    transform: scale(1.1);
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.table, .table th, .table td {
+    border: 1px solid #0a0a0a;
+}
+
+.table th {
+    background: #5a3e9e;
+    color: rgb(9, 9, 9);
+    padding: 12px;
+    text-align: left;
+}
+
+.table td {
+    padding: 10px;
+    background: #adabb0;
+}
+
+/* .table tr: {
+    background: #f2f2f2;
+} */
+
+/* Buttons */
+.btn {
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    margin: 5px;
+    text-decoration: none;
+    color: rgb(5, 5, 5);
+    background: #adabb0;
+    border-radius: 5px;
+    
+}
+
+.pagination a:hover {
+    background: #adabb0;
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Bookings</h1>
+
+        <!-- Filter Section -->
+        <div class="filters">
+            <form method="GET" action="{{ url_for('admin_bookings') }}">
+                <div class="filter-group">
+                    <label for="status">Booking Status</label>
+                    <select name="status" id="status">
+                        <option value="">All Status</option>
+                        <option value="Pending" {% if request.args.get('status') == 'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="Confirmed" {% if request.args.get('status') == 'Confirmed' %}selected{% endif %}>Confirmed</option>
+                        <option value="Cancelled" {% if request.args.get('status') == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="start_date">Start Date</label>
+                    <input type="date" name="start_date" id="start_date" value="{{ request.args.get('start_date') }}">
+                </div>
+                <div class="filter-group">
+                    <label for="end_date">End Date</label>
+                    <input type="date" name="end_date" id="end_date" value="{{ request.args.get('end_date') }}">
+                </div>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <!-- Booking List -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Room Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Method</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user_name }}</td>
+                    <td>{{ booking.email }}</td>
+                    <td>{{ booking.room_type }}</td>
+                    <td>Rs. {{ booking.amount }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>{{ booking.payment_method }}</td>
+                    <td>
+                        <!-- Actions: Confirm, Cancel -->
+                        <a href="{{ url_for('confirm_booking', booking_id=booking.id) }}" class="btn btn-success">Confirm</a>
+                        <a href="{{ url_for('cancel_booking', booking_id=booking.id) }}" class="btn btn-danger">Cancel</a>
+                        <a href="{{ url_for('view_booking_details', booking_id=booking.id) }}" class="btn btn-info">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination (if needed) -->
+        <div class="pagination">
+            <!-- You can implement pagination here if there are many bookings -->
+            {% if bookings.has_prev %}
+                <a href="{{ url_for('manage_bookings', page=bookings.prev_num) }}">Previous</a>
+            {% endif %}
+            <span>Page {{ bookings.page }} of {{ bookings.pages }}</span>
+            {% if bookings.has_next %}
+                <a href="{{ url_for('manage_bookings', page=bookings.next_num) }}">Next</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- Include Bootstrap or your custom CSS for better styling -->
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #5a3e9e;
+        } */
+        .filters {
+            margin-bottom: 20px;
+        }
+        .filter-group {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .filter-group label {
+            display: block;
+        }
+        /* .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        } */
+        /* .table, .table th, .table td {
+            border: 1px solid #ddd;
+        } */
+        /* .table th, .table td {
+            padding: 10px;
+            text-align: left;
+        } */
+        .table th {
+            background-color: #f4f4f4;
+        }
+        /* .btn {
+            padding: 5px 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        } */
+        /* .btn-success {
+            background-color: #28a745;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+        } */
+        /* .pagination {
+            text-align: center;
+            margin-top: 20px;
+        } */
+        /* .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #5a3e9e;
+        } */
+    </style>
+</body>
+</html>

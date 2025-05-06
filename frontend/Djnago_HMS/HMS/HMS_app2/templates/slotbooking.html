@@ -1,0 +1,262 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slot Booking | Ghar Ka Khana</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fdf6ed;
+      color: #333;
+    }
+    a{
+      text-decoration: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+      color: white;
+      animation: fadeIn 1s ease;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.6em;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    header a {
+      display: inline-block;
+      margin-top: 15px;
+      background-color: white;
+      color: #ff6e7f;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    header a:hover {
+      background-color: #fff0f4;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      animation: slideUp 1s ease;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff6e7f;
+    }
+
+    .plans {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .plan {
+      background: #fff9f5;
+      border: 2px solid #ffb8c6;
+      border-radius: 12px;
+      padding: 20px;
+      width: 240px;
+      text-align: center;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+
+    .plan:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .plan h3 {
+      margin-top: 0;
+      color: #ff6e7f;
+    }
+
+    .plan p {
+      font-size: 1.1em;
+      margin: 10px 0;
+    }
+
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    #price-display {
+      background-color: #fff4f7;
+      border: 2px dashed #ffb8c6;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #d63653;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    button {
+      background-color: #ff6e7f;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #e35b6d;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .plans {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .plan {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📅 Slot Booking</h1>
+    <p>Choose your meal slot — fresh Ghar Ka Khana, every day!</p>
+    <a href="{%url 'HMS_app2'%}">⬅️ Home</a>
+  </header>
+
+  <div class="container">
+    <h2>Choose Your Meal Plan</h2>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Breakfast</h3>
+        <p><strong>₹60 / Day</strong></p>
+        <p><strong>₹1500 / Month</strong></p>
+      </div>
+      <div class="plan">
+        <h3>Lunch</h3>
+        <p><strong>₹80 / Day</strong></p>
+        <p><strong>₹2100 / Month</strong></p>
+      </div>
+      <div class="plan">
+        <h3>Dinner</h3>
+        <p><strong>₹100 / Day</strong></p>
+        <p><strong>₹2500 / Month</strong></p>
+      </div>
+    </div>
+
+    <form id="booking-form" action="#" method="POST">
+      {% csrf_token %}
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+      <label for="meal">Select Meal</label>
+      <select id="meal" name="meal" required>
+        <option value="">-- Choose a Meal --</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+      </select>
+
+      <label for="plan">Select Plan</label>
+      <select id="plan" name="plan" required>
+        <option value="">-- Choose a Plan --</option>
+        <option value="daily">Daily</option>
+        <option value="monthly">Monthly</option>
+      </select>
+
+      <div id="price-display">Total Price: ₹0</div>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <button type="submit"><a href="{% url 'payment_page' %}">Proceed to Payment</a></button>
+    </form>
+  </div>
+
+  <script>
+    const mealSelect = document.getElementById('meal');
+    const planSelect = document.getElementById('plan');
+    const priceDisplay = document.getElementById('price-display');
+
+    const prices = {
+      breakfast: { daily: 60, monthly: 1500 },
+      lunch: { daily: 80, monthly: 2100 },
+      dinner: { daily: 100, monthly: 2500 }
+    };
+
+    function updatePrice() {
+      const meal = mealSelect.value;
+      const plan = planSelect.value;
+
+      if (meal && plan && prices[meal][plan]) {
+        priceDisplay.textContent = `Total Price: ₹${prices[meal][plan]}`;
+        priceDisplay.style.display = 'block';
+      } else {
+        priceDisplay.style.display = 'none';
+      }
+    }
+
+    mealSelect.addEventListener('change', updatePrice);
+    planSelect.addEventListener('change', updatePrice);
+  </script>
+
+</body>
+</html>
